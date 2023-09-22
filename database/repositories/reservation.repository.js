@@ -10,11 +10,9 @@ class ReservationRepository {
        
         const reservation = await db.reservations.create({reservation_day, start, stop, description});
         if(!reservation) {
-            console.log("error: no reservation");
+            console.log("error: couldn't create reservation");
         }
-        else{
-            console.log("created reservation: " + reservation);
-        } 
+        
         return reservation; 
        
     }
@@ -24,7 +22,7 @@ class ReservationRepository {
         const reservation = await db.reservations.findByPk(id);
 
         if(!reservation) {
-          return "reservation Not found";
+          console.log("reservation not found");
         }
         return reservation;
       
@@ -72,13 +70,11 @@ class ReservationRepository {
                     ( (stop1 >= dbStart) && (stop1 >= dbEnd) )
                   )
              ) {
-              console.log("values if: "+ start1, dbStart, stop1, dbEnd);
-            console.log("already reserved");
             can = false;
             return can;
         }
         }
-        console.log("can create");
+
        return can;
           }
     }
@@ -126,7 +122,6 @@ class ReservationRepository {
                 ) && ( reservations[i].reserv_id != id ) )
            ) {
             
-          console.log("already reserved");
           can = false;
           return can;
       }
@@ -145,7 +140,6 @@ class ReservationRepository {
                   where: { reserv_id : id}
         });
        
-        console.log(updatedReservation);
         return updatedReservation;
         
     }
@@ -155,7 +149,9 @@ class ReservationRepository {
 
         //getting all notification
         const allReservations = await db.reservations.findAll();
-        
+        if(!reservation){
+          console.log("no reservations yet");
+        }
         return allReservations;
     }
 
@@ -163,8 +159,9 @@ class ReservationRepository {
      static async deleteReservation(id) {
         const reservation = await db.reservations.findByPk(id);
         if(!reservation){
+          console.log("not found");
             return null
-        }
+        } else {
         const status = "inactive";
         const deletedReserv = await db.reservations.update({status}, {
           where: { reserv_id : id} }
@@ -172,11 +169,12 @@ class ReservationRepository {
         //console.log("del",deletedNUm);
         if(!deletedReserv){
             return null;
-        }
+        } else {
         console.log("has been deleted");
             return deletedReserv;
+        }
     }
-
+     }
 }
 
 

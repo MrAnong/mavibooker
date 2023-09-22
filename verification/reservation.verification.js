@@ -23,7 +23,7 @@ class ReservationVerification {
      
     const reservation = await ReservationRepository.findReservationById(id);
     if (!reservation) {
-      return " reservation not found";
+      console.log("not found");
     }
 
     const can = await ReservationRepository.findReservationByDateToUpdate(reservation.reservation_id,reservation_day,
@@ -32,7 +32,7 @@ class ReservationVerification {
             
       const updatedReservation = await ReservationRepository.updateReservation(reservation.reservation_id,reservation_day, 
                                                                                         start, stop, description); 
-        console.log("updated");
+        console.log("reservation updated");
        return updatedReservation;
       } else {
         const updatedReservation = null;
@@ -43,19 +43,14 @@ class ReservationVerification {
 
   static async GetReservation(id) {
     const reservation = await ReservationRepository.findReservationById(id);
-    if (!reservation) {
-      return "reservation not found";
-    }
     //console.log("object",object)
     return reservation;
   }
   static async AllReservations() {
     const reservation = await ReservationRepository.allReservations();
-    if (!reservation) {
-      return " reservation not found";
-    }
-    //console.log(" object", object)
+   
     return reservation;
+    
   }
 
   static async DeleteReservation(id) {

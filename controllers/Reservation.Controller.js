@@ -24,9 +24,13 @@ router.use(bodyparser.urlencoded({
 //Getting all reservation 
 router.get('/all', async function(req, res){
    
-    const reservation = await ReservationRepository.allReservations();
-   
-    res.send(reservation );
+    const reservation = await ReservationVerification.AllReservations();
+
+   if(!reservation) {
+    res.send("Sorry there have been no reservations made at the moment. please try again later");
+   } else {
+    res.status(200).send(reservation);
+   }
 });
 
 //getting a reservation  with id
@@ -34,7 +38,11 @@ router.get('/:id', async function(req, res){
     let id = req.params.id
   
     const reservation  = await ReservationVerification.GetReservation(id)
-    res.send(reservation );
+    if(!reservation) {
+        res.send("Sorry there exists no such reservation. please try finding another");
+       } else {
+        res.status(200).send(reservation);
+       }
 }); 
 
 
@@ -46,7 +54,12 @@ router.post('/new_reservation', async function(req, res){
     let description = req.body.description
 
     const reservation  = await ReservationVerification.CreateReservation(reservation_day, start, stop, description);
-    res.status(200).send(reservation );
+    if(!reservation) {
+        res.send("Sorry, the period you specified is already taken. please enter another period");
+       } else {
+        console.log("The reservation has been created successfully");
+        res.status(200).send(reservation);
+       }
 }); 
 
 //updating a reservation 
@@ -58,17 +71,24 @@ router.put('/update/:id', async function(req, res){
     let description = req.body.description
     
     const reservation  = await ReservationVerification.UpdateReservation(id, reservation_day, start, stop, description);
-    res.send(reservation );
+    if(!reservation) {
+        res.send("Sorry, the reservation couldn't be updated");
+       } else {
+        console.log("The reservation has been updated successfully");
+        res.status(200).send(reservation);
+       }
 }); 
 
 //deleting a reservation 
 router.delete('/delete/:id', async function(req, res){
     let id = req.params.id
     const reservation = await ReservationVerification.DeleteReservation(id);
-    if(reservation )
-        res.status(200).send("deleted reservation  successfully!!");
-    else
-     res.status(404).send("no reservation  found nor deleted");
+    if(!reservation) {
+        res.send("Sorry, the reservation couldn't be updated");
+       } else {
+        console.log("The reservation has been updated successfully");
+        res.status(200).send(reservation);
+       }
 });
 
 module.exports = router;
