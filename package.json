@@ -7,7 +7,7 @@
     "node": "14.X"
   },
   "scripts": {
-    "build": "nodemon mavibooker.js",
+    "build": "node mavibooker.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
