@@ -1,0 +1,96 @@
+//TO GET ALL THE USERS
+http://localhost:3000/users/all
+
+//TO GET A USER BY HIS/HER ID
+http://localhost:3000/users/1
+
+//TO REGISTER A USER
+http://localhost:3000/users/register
+
+{
+    "first_name": 
+    "middle_name": ,
+    "last_name": ,
+    "gender": ,
+    "birth_date": ,
+    "email": ,
+    "password": 
+  }
+
+//TO LOGIN A USER
+http://localhost:3000/users/login
+
+{
+    "email": 
+    "password": 
+}
+
+  //TO UPDATE A PARTICULAR USER
+  http://localhost:3000/users/update/2
+
+  //TO DELETE A USER
+  http://localhost:3000/users/delete/1
+
+  //TO GET ALL OBJECTS
+  http://localhost:3000/objects/all
+
+  //TO GET OBJECTS BY ID
+  http://localhost:3000/objects/1
+
+  //TO POST AN OBJECT
+  http://localhost:3000/objects/new_object
+
+  {
+    "name": ,
+    "description": ,
+    "type": ,
+    "location": 
+  }
+
+  //TO UPDATE AN OBJECT
+  http://localhost:3000/objects/update/1
+
+  //TO DELETE AN OBJECT
+  http://localhost:3000/objects/delete/1
+
+  //TO GET ATT RESERVATIONS
+  http://localhost:3000/reservations/all
+
+  //TO GET RESERVATIONS BY ID
+  http://localhost:3000/reservations/15
+
+  //TO CREATE A RESERVATION
+  http://localhost:3000/reservations/new_reservation
+
+  {
+    "reservation_day": ,
+    "start": ,
+    "stop": ,
+    "description": 
+  }
+
+//TO UPDATE A RESERVATION
+http://localhost:3000/reservations/update/19
+
+//TO DELETE A RESERVATION
+http://localhost:3000/reservations/delete/15
+
+//TO GET ALL NOTIFICATIONS
+http://localhost:3000/notifications/all
+
+//TO GET NOTIFICATIONS BY ID
+http://localhost:3000/notifications/1
+
+//TO ADD A NOTIFICATION
+http://localhost:3000/notifications/new_notification
+
+{
+    "type": ,
+    "content": 
+  }
+
+//TO UPDATE A NOTIFICATION
+http://localhost:3000/notifications/update1
+
+//TO DEETE A NOTIFICATION
+http://localhost:3000/notification/6
